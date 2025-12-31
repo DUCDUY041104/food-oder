@@ -1,0 +1,10 @@
+# Tự động chuyển hướng từ /admin/ đến /admin/index.php
+DirectoryIndex index.php
+
+# Bật RewriteEngine
+RewriteEngine On
+
+# Nếu truy cập /admin/ (không có file cụ thể), chuyển đến index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^$ index.php [L]
