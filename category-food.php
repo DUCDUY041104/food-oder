@@ -78,7 +78,11 @@
                     <?php echo $description; ?>
                     </p>
                     <br>
-                    <a href="<?php echo SITEURL ;?>order.php?food_id=<?php echo $id;?>" class="btn btn-primary">Đặt ngay</a>
+                    <?php if(isset($_SESSION['user_id'])): ?>
+                        <button onclick="addToCart(<?php echo $id; ?>)" class="btn btn-primary">🛒 Thêm vào giỏ</button>
+                    <?php else: ?>
+                        <a href="<?php echo SITEURL; ?>user/login.php" class="btn btn-primary">Đặt ngay</a>
+                    <?php endif; ?>
                 </div>
             </div>
                     <?php

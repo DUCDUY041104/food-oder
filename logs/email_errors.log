@@ -1,0 +1,465 @@
+2025-12-31 08:50:40 - SMTP Debug: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-2a2f3c666d5sm314837715ad.21 - gsmtp
+2025-12-31 08:50:40 - SMTP Debug: CLIENT -> SERVER: EHLO localhost
+2025-12-31 08:50:41 - SMTP Debug: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:ee0:4161:5fe6:1c2c:f899:1865:afa]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+2025-12-31 08:50:41 - SMTP Debug: CLIENT -> SERVER: STARTTLS
+2025-12-31 08:50:41 - SMTP Debug: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+2025-12-31 08:50:41 - SMTP Debug: CLIENT -> SERVER: EHLO localhost
+2025-12-31 08:50:41 - SMTP Debug: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:ee0:4161:5fe6:1c2c:f899:1865:afa]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+2025-12-31 08:50:41 - SMTP Debug: CLIENT -> SERVER: AUTH LOGIN
+2025-12-31 08:50:42 - SMTP Debug: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+2025-12-31 08:50:42 - SMTP Debug: CLIENT -> SERVER: [credentials hidden]
+2025-12-31 08:50:42 - SMTP Debug: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+2025-12-31 08:50:42 - SMTP Debug: CLIENT -> SERVER: [credentials hidden]
+2025-12-31 08:50:42 - SMTP Debug: SERVER -> CLIENT: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2a2f3c666d5sm314837715ad.21 - gsmtp
+2025-12-31 08:50:42 - SMTP Debug: SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2a2f3c666d5sm314837715ad.21 - gsmtp
+2025-12-31 08:50:42 - SMTP Debug: SMTP Error: Could not authenticate.
+2025-12-31 08:50:42 - SMTP Debug: CLIENT -> SERVER: QUIT
+2025-12-31 08:50:42 - SMTP Debug: SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-2a2f3c666d5sm314837715ad.21 - gsmtp
+2025-12-31 08:50:42 - SMTP Debug: SMTP Error: Could not authenticate.
+2025-12-31 08:50:42 - PHPMailer Error: SMTP Error: Could not authenticate. | Exception: SMTP Error: Could not authenticate.
+2025-12-31 09:04:18 - SMTP Debug: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-7ff7e48f30bsm34428428b3a.48 - gsmtp
+2025-12-31 09:04:18 - SMTP Debug: CLIENT -> SERVER: EHLO localhost
+2025-12-31 09:04:19 - SMTP Debug: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:ee0:4161:5fe6:1c2c:f899:1865:afa]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+2025-12-31 09:04:19 - SMTP Debug: CLIENT -> SERVER: STARTTLS
+2025-12-31 09:04:19 - SMTP Debug: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+2025-12-31 09:04:19 - SMTP Debug: CLIENT -> SERVER: EHLO localhost
+2025-12-31 09:04:19 - SMTP Debug: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:ee0:4161:5fe6:1c2c:f899:1865:afa]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+2025-12-31 09:04:19 - SMTP Debug: CLIENT -> SERVER: AUTH LOGIN
+2025-12-31 09:04:19 - SMTP Debug: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+2025-12-31 09:04:19 - SMTP Debug: CLIENT -> SERVER: [credentials hidden]
+2025-12-31 09:04:19 - SMTP Debug: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+2025-12-31 09:04:19 - SMTP Debug: CLIENT -> SERVER: [credentials hidden]
+2025-12-31 09:04:20 - SMTP Debug: SERVER -> CLIENT: 235 2.7.0 Accepted
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: MAIL FROM:<wowfood6868@gmail.com>
+2025-12-31 09:04:20 - SMTP Debug: SERVER -> CLIENT: 250 2.1.0 OK d2e1a72fcca58-7ff7e48f30bsm34428428b3a.48 - gsmtp
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: RCPT TO:<wowfood676@gmail.com>
+2025-12-31 09:04:20 - SMTP Debug: SERVER -> CLIENT: 250 2.1.5 OK d2e1a72fcca58-7ff7e48f30bsm34428428b3a.48 - gsmtp
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: DATA
+2025-12-31 09:04:20 - SMTP Debug: SERVER -> CLIENT: 354 Go ahead d2e1a72fcca58-7ff7e48f30bsm34428428b3a.48 - gsmtp
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: Date: Wed, 31 Dec 2025 09:04:18 +0100
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: To: wowfood676@gmail.com
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: From: WowFood <wowfood6868@gmail.com>
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: Subject: Test Email - WowFood
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: Message-ID: <ThDEmzWAiPXMI1jly89X1EYYzLhAIl3iveBAbyyV8c@localhost>
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: X-Mailer: PHPMailer 7.0.1 (https://github.com/PHPMailer/PHPMailer)
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: MIME-Version: 1.0
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: Content-Type: multipart/alternative;
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER:  boundary="b1=_ThDEmzWAiPXMI1jly89X1EYYzLhAIl3iveBAbyyV8c"
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:20 - SMTP Debug: CLIENT -> SERVER: --b1=_ThDEmzWAiPXMI1jly89X1EYYzLhAIl3iveBAbyyV8c
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: Content-Type: text/plain; charset=UTF-8
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         body { font-family: Arial, sans-serif; }
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         .code { font-size: 32px; font-weight: bold; color: #ff6b81; text-align: center; padding: 20px; background: #f1f2f6; border-radius: 10px; margin: 20px 0; }
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         Test Email từ WowFood
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         Đây là email test để kiểm tra cấu hình PHPMailer.
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         TEST123
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         Nếu bạn nhận được email này, cấu hình đã hoạt động!
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: --b1=_ThDEmzWAiPXMI1jly89X1EYYzLhAIl3iveBAbyyV8c
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: <html>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: <head>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:     <style>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         body { font-family: Arial, sans-serif; }
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         .code { font-size: 32px; font-weight: bold; color: #ff6b81; text-align: center; padding: 20px; background: #f1f2f6; border-radius: 10px; margin: 20px 0; }
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:     </style>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: </head>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: <body>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:     <div class='container'>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         <h2>Test Email từ WowFood</h2>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         <p>Đây là email test để kiểm tra cấu hình PHPMailer.</p>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         <div class='code'>TEST123</div>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:         <p>Nếu bạn nhận được email này, cấu hình đã hoạt động!</p>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:     </div>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: </body>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: </html>
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: --b1=_ThDEmzWAiPXMI1jly89X1EYYzLhAIl3iveBAbyyV8c--
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: .
+2025-12-31 09:04:21 - SMTP Debug: SERVER -> CLIENT: 250 2.0.0 OK  1767168259 d2e1a72fcca58-7ff7e48f30bsm34428428b3a.48 - gsmtp
+2025-12-31 09:04:21 - SMTP Debug: CLIENT -> SERVER: QUIT
+2025-12-31 09:04:22 - SMTP Debug: SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-7ff7e48f30bsm34428428b3a.48 - gsmtp
+2025-12-31 09:13:11 - SMTP Debug: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 41be03b00d2f7-c1e7bc68ab5sm30972594a12.17 - gsmtp
+2025-12-31 09:13:11 - SMTP Debug: CLIENT -> SERVER: EHLO localhost
+2025-12-31 09:13:12 - SMTP Debug: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:ee0:4161:5fe6:1c2c:f899:1865:afa]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+2025-12-31 09:13:12 - SMTP Debug: CLIENT -> SERVER: STARTTLS
+2025-12-31 09:13:12 - SMTP Debug: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+2025-12-31 09:13:12 - SMTP Debug: CLIENT -> SERVER: EHLO localhost
+2025-12-31 09:13:12 - SMTP Debug: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:ee0:4161:5fe6:1c2c:f899:1865:afa]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+2025-12-31 09:13:12 - SMTP Debug: CLIENT -> SERVER: AUTH LOGIN
+2025-12-31 09:13:12 - SMTP Debug: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+2025-12-31 09:13:12 - SMTP Debug: CLIENT -> SERVER: [credentials hidden]
+2025-12-31 09:13:12 - SMTP Debug: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+2025-12-31 09:13:12 - SMTP Debug: CLIENT -> SERVER: [credentials hidden]
+2025-12-31 09:13:13 - SMTP Debug: SERVER -> CLIENT: 235 2.7.0 Accepted
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: MAIL FROM:<wowfood6868@gmail.com>
+2025-12-31 09:13:13 - SMTP Debug: SERVER -> CLIENT: 250 2.1.0 OK 41be03b00d2f7-c1e7bc68ab5sm30972594a12.17 - gsmtp
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: RCPT TO:<c.chien59941@gmail.com>
+2025-12-31 09:13:13 - SMTP Debug: SERVER -> CLIENT: 250 2.1.5 OK 41be03b00d2f7-c1e7bc68ab5sm30972594a12.17 - gsmtp
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: DATA
+2025-12-31 09:13:13 - SMTP Debug: SERVER -> CLIENT: 354 Go ahead 41be03b00d2f7-c1e7bc68ab5sm30972594a12.17 - gsmtp
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: Date: Wed, 31 Dec 2025 09:13:10 +0100
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: To: c.chien59941@gmail.com
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: From: WowFood <wowfood6868@gmail.com>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: Subject: =?UTF-8?Q?M=C3=A3_x=C3=A1c_minh_=C4=91=C4=83ng_k=C3=BD_-_WowFood?=
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: Message-ID: <j3dx3FW3zLoSPEywVxvnb3J2urSxiN1sBpvYw4Z97p0@localhost>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: X-Mailer: PHPMailer 7.0.1 (https://github.com/PHPMailer/PHPMailer)
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: MIME-Version: 1.0
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: Content-Type: multipart/alternative;
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:  boundary="b1=_j3dx3FW3zLoSPEywVxvnb3J2urSxiN1sBpvYw4Z97p0"
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: --b1=_j3dx3FW3zLoSPEywVxvnb3J2urSxiN1sBpvYw4Z97p0
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: Content-Type: text/plain; charset=UTF-8
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             body { font-family: Arial, sans-serif; line-height: 1.6; }
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             .code { font-size: 32px; font-weight: bold; color: #ff6b81; text-align: center; padding: 20px; background: #f1f2f6; border-radius: 10px; margin: 20px 0; letter-spacing: 5px; }
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             Xác minh đăng ký tài khoản WowFood
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             Xin chào,
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             Cảm ơn bạn đã đăng ký tài khoản tại WowFood. Vui lòng sử dụng mã xác minh sau để hoàn tất đăng ký:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             628344
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             Mã này có hiệu lực trong 10 phút.
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             Nếu bạn không yêu cầu mã này, vui lòng bỏ qua email này.
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:                 Trân trọng,Đội ngũ WowFood
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: --b1=_j3dx3FW3zLoSPEywVxvnb3J2urSxiN1sBpvYw4Z97p0
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:     <html>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:     <head>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:         <style>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             body { font-family: Arial, sans-serif; line-height: 1.6; }
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             .code { font-size: 32px; font-weight: bold; color: #ff6b81; text-align: center; padding: 20px; background: #f1f2f6; border-radius: 10px; margin: 20px 0; letter-spacing: 5px; }
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:         </style>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:     </head>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:     <body>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:         <div class='container'>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             <h2>Xác minh đăng ký tài khoản WowFood</h2>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             <p>Xin chào,</p>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             <p>Cảm ơn bạn đã đăng ký tài khoản tại WowFood. Vui lòng sử dụng mã xác minh sau để hoàn tất đăng ký:</p>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             <div class='code'>628344</div>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             <p><strong>Mã này có hiệu lực trong 10 phút.</strong></p>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             <p>Nếu bạn không yêu cầu mã này, vui lòng bỏ qua email này.</p>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             <div class='footer'>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:                 <p>Trân trọng,<br>Đội ngũ WowFood</p>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:             </div>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:         </div>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:     </body>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:     </html>
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: --b1=_j3dx3FW3zLoSPEywVxvnb3J2urSxiN1sBpvYw4Z97p0--
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:13:13 - SMTP Debug: CLIENT -> SERVER: .
+2025-12-31 09:13:14 - SMTP Debug: SERVER -> CLIENT: 250 2.0.0 OK  1767168792 41be03b00d2f7-c1e7bc68ab5sm30972594a12.17 - gsmtp
+2025-12-31 09:13:14 - SMTP Debug: CLIENT -> SERVER: QUIT
+2025-12-31 09:13:14 - SMTP Debug: SERVER -> CLIENT: 221 2.0.0 closing connection 41be03b00d2f7-c1e7bc68ab5sm30972594a12.17 - gsmtp
+2025-12-31 09:14:41 - SMTP Debug: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-2a2f3d776c1sm317347795ad.102 - gsmtp
+2025-12-31 09:14:41 - SMTP Debug: CLIENT -> SERVER: EHLO localhost
+2025-12-31 09:14:42 - SMTP Debug: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:ee0:4161:5fe6:1c2c:f899:1865:afa]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+2025-12-31 09:14:42 - SMTP Debug: CLIENT -> SERVER: STARTTLS
+2025-12-31 09:14:42 - SMTP Debug: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+2025-12-31 09:14:42 - SMTP Debug: CLIENT -> SERVER: EHLO localhost
+2025-12-31 09:14:42 - SMTP Debug: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:ee0:4161:5fe6:1c2c:f899:1865:afa]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+2025-12-31 09:14:42 - SMTP Debug: CLIENT -> SERVER: AUTH LOGIN
+2025-12-31 09:14:42 - SMTP Debug: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+2025-12-31 09:14:42 - SMTP Debug: CLIENT -> SERVER: [credentials hidden]
+2025-12-31 09:14:43 - SMTP Debug: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+2025-12-31 09:14:43 - SMTP Debug: CLIENT -> SERVER: [credentials hidden]
+2025-12-31 09:14:43 - SMTP Debug: SERVER -> CLIENT: 235 2.7.0 Accepted
+2025-12-31 09:14:43 - SMTP Debug: CLIENT -> SERVER: MAIL FROM:<wowfood6868@gmail.com>
+2025-12-31 09:14:43 - SMTP Debug: SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-2a2f3d776c1sm317347795ad.102 - gsmtp
+2025-12-31 09:14:43 - SMTP Debug: CLIENT -> SERVER: RCPT TO:<buiducduy3005@gmail.com>
+2025-12-31 09:14:43 - SMTP Debug: SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-2a2f3d776c1sm317347795ad.102 - gsmtp
+2025-12-31 09:14:43 - SMTP Debug: CLIENT -> SERVER: DATA
+2025-12-31 09:14:44 - SMTP Debug: SERVER -> CLIENT: 354 Go ahead d9443c01a7336-2a2f3d776c1sm317347795ad.102 - gsmtp
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: Date: Wed, 31 Dec 2025 09:14:41 +0100
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: To: buiducduy3005@gmail.com
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: From: WowFood <wowfood6868@gmail.com>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: Subject: =?UTF-8?Q?M=C3=A3_x=C3=A1c_minh_=C4=91=C4=83ng_k=C3=BD_-_WowFood?=
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: Message-ID: <zKhKIXQT3JSzlXKKi11U6bR4yQOeS5H9PThVxqNvo@localhost>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: X-Mailer: PHPMailer 7.0.1 (https://github.com/PHPMailer/PHPMailer)
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: MIME-Version: 1.0
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: Content-Type: multipart/alternative;
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:  boundary="b1=_zKhKIXQT3JSzlXKKi11U6bR4yQOeS5H9PThVxqNvo"
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: --b1=_zKhKIXQT3JSzlXKKi11U6bR4yQOeS5H9PThVxqNvo
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: Content-Type: text/plain; charset=UTF-8
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             body { font-family: Arial, sans-serif; line-height: 1.6; }
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             .code { font-size: 32px; font-weight: bold; color: #ff6b81; text-align: center; padding: 20px; background: #f1f2f6; border-radius: 10px; margin: 20px 0; letter-spacing: 5px; }
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             Xác minh đăng ký tài khoản WowFood
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             Xin chào,
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             Cảm ơn bạn đã đăng ký tài khoản tại WowFood. Vui lòng sử dụng mã xác minh sau để hoàn tất đăng ký:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             184993
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             Mã này có hiệu lực trong 10 phút.
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             Nếu bạn không yêu cầu mã này, vui lòng bỏ qua email này.
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:                 Trân trọng,Đội ngũ WowFood
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: --b1=_zKhKIXQT3JSzlXKKi11U6bR4yQOeS5H9PThVxqNvo
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:     <html>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:     <head>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:         <style>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             body { font-family: Arial, sans-serif; line-height: 1.6; }
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             .code { font-size: 32px; font-weight: bold; color: #ff6b81; text-align: center; padding: 20px; background: #f1f2f6; border-radius: 10px; margin: 20px 0; letter-spacing: 5px; }
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:         </style>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:     </head>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:     <body>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:         <div class='container'>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             <h2>Xác minh đăng ký tài khoản WowFood</h2>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             <p>Xin chào,</p>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             <p>Cảm ơn bạn đã đăng ký tài khoản tại WowFood. Vui lòng sử dụng mã xác minh sau để hoàn tất đăng ký:</p>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             <div class='code'>184993</div>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             <p><strong>Mã này có hiệu lực trong 10 phút.</strong></p>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             <p>Nếu bạn không yêu cầu mã này, vui lòng bỏ qua email này.</p>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             <div class='footer'>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:                 <p>Trân trọng,<br>Đội ngũ WowFood</p>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:             </div>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:         </div>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:     </body>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:     </html>
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: --b1=_zKhKIXQT3JSzlXKKi11U6bR4yQOeS5H9PThVxqNvo--
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: .
+2025-12-31 09:14:44 - SMTP Debug: SERVER -> CLIENT: 250 2.0.0 OK  1767168882 d9443c01a7336-2a2f3d776c1sm317347795ad.102 - gsmtp
+2025-12-31 09:14:44 - SMTP Debug: CLIENT -> SERVER: QUIT
+2025-12-31 09:14:45 - SMTP Debug: SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-2a2f3d776c1sm317347795ad.102 - gsmtp
+2025-12-31 09:15:30 - SMTP Debug: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-2a2f3d4cb25sm324867395ad.56 - gsmtp
+2025-12-31 09:15:30 - SMTP Debug: CLIENT -> SERVER: EHLO localhost
+2025-12-31 09:15:30 - SMTP Debug: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:ee0:4161:5fe6:1c2c:f899:1865:afa]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+2025-12-31 09:15:30 - SMTP Debug: CLIENT -> SERVER: STARTTLS
+2025-12-31 09:15:30 - SMTP Debug: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+2025-12-31 09:15:30 - SMTP Debug: CLIENT -> SERVER: EHLO localhost
+2025-12-31 09:15:31 - SMTP Debug: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2001:ee0:4161:5fe6:1c2c:f899:1865:afa]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+2025-12-31 09:15:31 - SMTP Debug: CLIENT -> SERVER: AUTH LOGIN
+2025-12-31 09:15:31 - SMTP Debug: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+2025-12-31 09:15:31 - SMTP Debug: CLIENT -> SERVER: [credentials hidden]
+2025-12-31 09:15:31 - SMTP Debug: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+2025-12-31 09:15:31 - SMTP Debug: CLIENT -> SERVER: [credentials hidden]
+2025-12-31 09:15:31 - SMTP Debug: SERVER -> CLIENT: 235 2.7.0 Accepted
+2025-12-31 09:15:31 - SMTP Debug: CLIENT -> SERVER: MAIL FROM:<wowfood6868@gmail.com>
+2025-12-31 09:15:31 - SMTP Debug: SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-2a2f3d4cb25sm324867395ad.56 - gsmtp
+2025-12-31 09:15:31 - SMTP Debug: CLIENT -> SERVER: RCPT TO:<buiducduy3005@gmail.com>
+2025-12-31 09:15:32 - SMTP Debug: SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-2a2f3d4cb25sm324867395ad.56 - gsmtp
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: DATA
+2025-12-31 09:15:32 - SMTP Debug: SERVER -> CLIENT: 354 Go ahead d9443c01a7336-2a2f3d4cb25sm324867395ad.56 - gsmtp
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: Date: Wed, 31 Dec 2025 09:15:29 +0100
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: To: buiducduy3005@gmail.com
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: From: WowFood <wowfood6868@gmail.com>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: Subject: =?UTF-8?Q?M=C3=A3_x=C3=A1c_minh_=C4=91=C4=83ng_k=C3=BD_-_WowFood?=
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: Message-ID: <MkBBJMkK1FLkw5tH0Ae7Dz84tnqeAFh5o1h6ouxwQ@localhost>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: X-Mailer: PHPMailer 7.0.1 (https://github.com/PHPMailer/PHPMailer)
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: MIME-Version: 1.0
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: Content-Type: multipart/alternative;
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:  boundary="b1=_MkBBJMkK1FLkw5tH0Ae7Dz84tnqeAFh5o1h6ouxwQ"
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: --b1=_MkBBJMkK1FLkw5tH0Ae7Dz84tnqeAFh5o1h6ouxwQ
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: Content-Type: text/plain; charset=UTF-8
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             body { font-family: Arial, sans-serif; line-height: 1.6; }
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             .code { font-size: 32px; font-weight: bold; color: #ff6b81; text-align: center; padding: 20px; background: #f1f2f6; border-radius: 10px; margin: 20px 0; letter-spacing: 5px; }
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             Xác minh đăng ký tài khoản WowFood
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             Xin chào,
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             Cảm ơn bạn đã đăng ký tài khoản tại WowFood. Vui lòng sử dụng mã xác minh sau để hoàn tất đăng ký:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             938299
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             Mã này có hiệu lực trong 10 phút.
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             Nếu bạn không yêu cầu mã này, vui lòng bỏ qua email này.
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:                 Trân trọng,Đội ngũ WowFood
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: --b1=_MkBBJMkK1FLkw5tH0Ae7Dz84tnqeAFh5o1h6ouxwQ
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:     <html>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:     <head>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:         <style>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             body { font-family: Arial, sans-serif; line-height: 1.6; }
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             .code { font-size: 32px; font-weight: bold; color: #ff6b81; text-align: center; padding: 20px; background: #f1f2f6; border-radius: 10px; margin: 20px 0; letter-spacing: 5px; }
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:         </style>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:     </head>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:     <body>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:         <div class='container'>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             <h2>Xác minh đăng ký tài khoản WowFood</h2>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             <p>Xin chào,</p>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             <p>Cảm ơn bạn đã đăng ký tài khoản tại WowFood. Vui lòng sử dụng mã xác minh sau để hoàn tất đăng ký:</p>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             <div class='code'>938299</div>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             <p><strong>Mã này có hiệu lực trong 10 phút.</strong></p>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             <p>Nếu bạn không yêu cầu mã này, vui lòng bỏ qua email này.</p>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             <div class='footer'>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:                 <p>Trân trọng,<br>Đội ngũ WowFood</p>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:             </div>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:         </div>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:     </body>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:     </html>
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: --b1=_MkBBJMkK1FLkw5tH0Ae7Dz84tnqeAFh5o1h6ouxwQ--
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER:
+2025-12-31 09:15:32 - SMTP Debug: CLIENT -> SERVER: .
+2025-12-31 09:15:33 - SMTP Debug: SERVER -> CLIENT: 250 2.0.0 OK  1767168930 d9443c01a7336-2a2f3d4cb25sm324867395ad.56 - gsmtp
+2025-12-31 09:15:33 - SMTP Debug: CLIENT -> SERVER: QUIT
+2025-12-31 09:15:33 - SMTP Debug: SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-2a2f3d4cb25sm324867395ad.56 - gsmtp

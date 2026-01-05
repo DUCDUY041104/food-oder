@@ -152,6 +152,7 @@ if(isset($_POST['submit'])){
         
         <div class="register-link">
             <p>Chưa có tài khoản? <a href="<?php echo SITEURL; ?>user/register.php">Đăng ký tại đây</a></p>
+            <p style="margin-top: 10px;"><a href="<?php echo SITEURL; ?>user/forgot-password.php">🔐 Quên mật khẩu?</a></p>
         </div>
     </div>
     
@@ -166,7 +167,7 @@ if(isset($_POST['submit'])){
             return trim($html);
         }
         
-        $sessionMessages = ['login-success', 'register-success', 'login', 'no-login-message'];
+        $sessionMessages = ['login-success', 'register-success', 'login', 'no-login-message', 'reset-password-success'];
         
         foreach($sessionMessages as $key) {
             if(isset($_SESSION[$key]) && !empty($_SESSION[$key])) {
