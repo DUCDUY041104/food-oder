@@ -24,8 +24,13 @@
             $sql = "SELECT * FROM tbl_category LIMIT 3";
 
             $res = mysqli_query($conn,$sql);
-
-            $count = mysqli_num_rows($res);
+            
+            if($res === false) {
+                echo "<div class='error'>Lỗi database: " . mysqli_error($conn) . "</div>";
+                $count = 0;
+            } else {
+                $count = mysqli_num_rows($res);
+            }
 
             if($count>0)
             {
@@ -90,8 +95,13 @@
           $sql2 = "SELECT * FROM tbl_food LIMIT 6";
 
           $res2 = mysqli_query($conn,$sql2);
-
-          $count2 = mysqli_num_rows($res2);
+          
+          if($res2 === false) {
+              echo "<div class='error'>Lỗi database: " . mysqli_error($conn) . "</div>";
+              $count2 = 0;
+          } else {
+              $count2 = mysqli_num_rows($res2);
+          }
 
           if($count2>0){
             while($row=mysqli_fetch_assoc($res2))

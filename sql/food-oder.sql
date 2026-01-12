@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 31, 2025 lúc 06:15 AM
+-- Thời gian đã tạo: Th1 12, 2026 lúc 04:59 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -42,6 +42,30 @@ CREATE TABLE `tbl_admin` (
 INSERT INTO `tbl_admin` (`id`, `full_name`, `email`, `username`, `password`) VALUES
 (14, 'Administrator', 'admin@wowfood.com', 'admin', 'admin123'),
 (15, 'Bùi Đức Duy', 'buiducduy095@gmail.com', 'Đức Duy', '$2y$10$b6TwzMayV8a0w5SH4xjLYu.Lwxq6432m03As1vRMUUioGxmrML5gu');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_cart`
+--
+
+CREATE TABLE `tbl_cart` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `food_id` int(10) UNSIGNED NOT NULL,
+  `food_name` varchar(150) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `note` text DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_cart`
+--
+
+INSERT INTO `tbl_cart` (`id`, `user_id`, `food_id`, `food_name`, `price`, `quantity`, `note`, `created_at`) VALUES
+(1, 5, 50, 'Pizaa', 12.00, 1, '', '2026-01-12 10:57:54');
 
 -- --------------------------------------------------------
 
@@ -90,14 +114,10 @@ CREATE TABLE `tbl_chat` (
 INSERT INTO `tbl_chat` (`id`, `user_id`, `admin_id`, `sender_type`, `message`, `is_read`, `created_at`) VALUES
 (1, 3, NULL, 'user', 'alo', 1, '2025-12-31 10:59:59'),
 (2, 3, 15, 'admin', 'sao vậy', 1, '2025-12-31 11:00:32'),
-(3, 3, NULL, 'user', 'đơn hàng của tôi bị hỏng yêu cầu hoàn hàng', 1, '2025-12-31 11:01:27'),
+(3, 3, NULL, 'user', 'đơn hàng của tôi bị hỏng', 1, '2025-12-31 11:01:27'),
 (4, 4, NULL, 'user', 'alo', 1, '2025-12-31 11:02:49'),
 (5, 4, 15, 'admin', 'sao vậy', 1, '2025-12-31 11:05:59'),
-(6, 4, NULL, 'user', 'thôi không cần nữa vấn đề của tôi đã được giải quyết', 1, '2025-12-31 11:08:10'),
-(7, 3, NULL, 'user', 'Xin chào, tôi cần hỗ trợ về Mã đơn hàng: ORD202512316B38F4 alo', 1, '2025-12-31 11:23:47'),
-(8, 4, NULL, 'user', 'Xin chào, tôi cần hỗ trợ về Mã đơn hàng: ORD202512316334F2 cho tôi một cay và ba cái không cay', 1, '2025-12-31 11:25:45'),
-(9, 3, 15, 'admin', 'ORD202512316B38F4 đơn hàng này đã được chúng tôi giao tới nơi', 1, '2025-12-31 11:42:11'),
-(10, 4, 15, 'admin', 'chúng tôi đã giao đơn hàng tới nơi', 0, '2025-12-31 11:42:32');
+(6, 5, NULL, 'user', 'alo', 1, '2026-01-12 10:58:07');
 
 -- --------------------------------------------------------
 
@@ -121,9 +141,9 @@ CREATE TABLE `tbl_food` (
 --
 
 INSERT INTO `tbl_food` (`id`, `title`, `description`, `price`, `image_name`, `category_id`, `featured`, `active`) VALUES
-(50, 'Pizaa', 'Pizaa là một trong những thực phẩm phổ biến nhất trên thế giới. Pizza được bán tại nhiều nhà hàng', 12.00, 'Food-name-1319.jpg', 29, 'Yes', 'Yes'),
-(52, 'Burger ', 'Các loại bánh kẹp có thịt xay, thịt gà, cá, hay cả các món chay ở giữa, nhưng vẫn có lát mì hình tròn.', 10.00, 'Food-name-4266.jpg', 30, 'Yes', 'Yes'),
-(54, 'Momo', 'nguồn gốc xuất xứ từ nepal ', 11.00, 'Food-name-6706.jpg', 31, 'Yes', 'Yes'),
+(50, 'Pizaa', 'Pizaa phổ biến nhất thế giới', 12.00, 'Food-name-1319.jpg', 29, 'Yes', 'Yes'),
+(52, 'Burger ', 'Bánh kẹp thịt xay', 10.00, 'Food-name-4266.jpg', 30, 'Yes', 'Yes'),
+(54, 'Momo', 'Nguồn gốc từ Nepal', 11.00, 'Food-name-6706.jpg', 31, 'Yes', 'Yes'),
 (60, 'Cánh gà chiên ', '', 5.00, 'Food-name-903.cms', 36, 'Yes', 'Yes');
 
 -- --------------------------------------------------------
@@ -181,7 +201,33 @@ CREATE TABLE `tbl_user` (
 
 INSERT INTO `tbl_user` (`id`, `full_name`, `username`, `password`, `email`, `phone`, `address`, `status`, `created_at`) VALUES
 (3, 'Nguyễn Thế Phong ', 'buiducduy0848', '$2y$10$4qjp.sjsWIE/qmShrPOkgOImEK3fqGglkQgXvm/07i/rMmx8HHGrC', 'buiducduy0848@gmail.com', '0983224809', 'ĐT - BTL - HÀ NỘI ', 'Active', '2025-12-31 09:20:44'),
-(4, 'Ngụy Hữu Phúc', 'buiducduy3005', '$2y$10$veoTZt1y.2sJR2UqKCvphu.XPA2hivrjdlu892dzs4sj.38K.zxoC', 'buiducduy3005@gmail.com', '0983224809', 'Mỹ Đình - Hà Nội ', 'Active', '2025-12-31 09:23:37');
+(4, 'Ngụy Hữu Phúc', 'buiducduy3005', '$2y$10$veoTZt1y.2sJR2UqKCvphu.XPA2hivrjdlu892dzs4sj.38K.zxoC', 'buiducduy3005@gmail.com', '0983224809', 'Mỹ Đình - Hà Nội ', 'Active', '2025-12-31 09:23:37'),
+(5, 'Chu Văn Chiến ', 'buiducduy095', '$2y$10$TUI2HtyXN.kL0nO15RJUY.074w/fEuKVX4d9wrOK6/OImy4.baSJq', 'buiducduy095@gmail.com', '0983224809', 'XĐ', 'Active', '2026-01-12 10:57:37');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_verification`
+--
+
+CREATE TABLE `tbl_verification` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `verification_code` varchar(10) NOT NULL,
+  `verification_type` enum('email','phone') NOT NULL DEFAULT 'email',
+  `expires_at` datetime NOT NULL,
+  `is_verified` tinyint(1) DEFAULT 0,
+  `attempts` int(11) DEFAULT 0,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_verification`
+--
+
+INSERT INTO `tbl_verification` (`id`, `email`, `phone`, `verification_code`, `verification_type`, `expires_at`, `is_verified`, `attempts`, `created_at`) VALUES
+(1, 'buiducduy095@gmail.com', NULL, '366802', 'email', '2026-01-12 05:07:15', 1, 1, '2026-01-12 10:57:15');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -194,6 +240,14 @@ ALTER TABLE `tbl_admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `tbl_cart`
+--
+ALTER TABLE `tbl_cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `food_id` (`food_id`);
+
+--
 -- Chỉ mục cho bảng `tbl_category`
 --
 ALTER TABLE `tbl_category`
@@ -204,8 +258,8 @@ ALTER TABLE `tbl_category`
 --
 ALTER TABLE `tbl_chat`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `admin_id` (`admin_id`);
+  ADD KEY `fk_chat_admin` (`admin_id`),
+  ADD KEY `fk_chat_user` (`user_id`);
 
 --
 -- Chỉ mục cho bảng `tbl_food`
@@ -219,8 +273,7 @@ ALTER TABLE `tbl_food`
 ALTER TABLE `tbl_order`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `order_code` (`order_code`),
-  ADD KEY `idx_order_code` (`order_code`),
-  ADD KEY `idx_user_id` (`user_id`);
+  ADD KEY `fk_order_user` (`user_id`);
 
 --
 -- Chỉ mục cho bảng `tbl_user`
@@ -229,6 +282,14 @@ ALTER TABLE `tbl_user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Chỉ mục cho bảng `tbl_verification`
+--
+ALTER TABLE `tbl_verification`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `email` (`email`),
+  ADD KEY `verification_code` (`verification_code`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -241,6 +302,12 @@ ALTER TABLE `tbl_admin`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT cho bảng `tbl_cart`
+--
+ALTER TABLE `tbl_cart`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT cho bảng `tbl_category`
 --
 ALTER TABLE `tbl_category`
@@ -250,7 +317,7 @@ ALTER TABLE `tbl_category`
 -- AUTO_INCREMENT cho bảng `tbl_chat`
 --
 ALTER TABLE `tbl_chat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_food`
@@ -269,6 +336,12 @@ ALTER TABLE `tbl_order`
 --
 ALTER TABLE `tbl_user`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_verification`
+--
+ALTER TABLE `tbl_verification`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
