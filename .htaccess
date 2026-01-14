@@ -1,0 +1,34 @@
+# Bật RewriteEngine
+RewriteEngine On
+
+# Xử lý case-insensitive cho tên thư mục (Food_order vs food_order)
+# Tự động detect base path từ REQUEST_URI
+RewriteCond %{REQUEST_URI} ^/([^/]+)/
+RewriteRule ^ - [E=BASE_PATH:/%1/]
+
+# Đảm bảo các file PHP có thể truy cập được
+<FilesMatch "\.php$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# Tự động thêm .php nếu thiếu (tùy chọn)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Chuyển hướng từ thư mục gốc đến index.php
+DirectoryIndex index.php
+
+# Bảo vệ các file nhạy cảm (chặn truy cập trực tiếp vào thư mục config, sql, logs)
+<FilesMatch "^(config|sql|logs)">
+    Order deny,allow
+    Deny from all
+</FilesMatch>
+
+# Cho phép truy cập file .htaccess (bảo mật)
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>

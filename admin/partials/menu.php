@@ -17,6 +17,7 @@ require_once('login-check.php');
                <ul>
                 <li><a href="index.php">Trang chủ</a></li>
                 <li><a href="manage-admin.php">Quản trị viên</a></li>
+                <li><a href="manage-user.php">Người dùng</a></li>
                 <li><a href="manage-category.php">Danh mục</a></li>
                 <li><a href="manage-food.php">Món ăn</a></li>
                 <li><a href = "manage-order.php">Đơn hàng</a></li>

@@ -1,4 +1,74 @@
-<?php include('partials/menu.php'); ?>
+<?php
+// Xử lý POST trước khi output HTML để tránh warning header
+require_once('../config/constants.php');
+require_once('partials/login-check.php');
+
+if(isset($_POST['submit'])){
+    $fullname = mysqli_real_escape_string($conn, $_POST['full_name']);
+    $email    = mysqli_real_escape_string($conn, $_POST['email']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+    $phone    = isset($_POST['phone']) ? mysqli_real_escape_string($conn, $_POST['phone']) : '';
+    $address  = isset($_POST['address']) ? mysqli_real_escape_string($conn, $_POST['address']) : '';
+    
+    // Validate password match
+    if($password !== $confirm_password){
+        $_SESSION['add'] = "<div class='error'>Mật khẩu không khớp!</div>";
+        header('location:'.SITEURL.'admin/add-admin.php');
+        exit();
+    }
+    
+    // Validate password length
+    if(strlen($password) < 6){
+        $_SESSION['add'] = "<div class='error'>Mật khẩu phải có ít nhất 6 ký tự!</div>";
+        header('location:'.SITEURL.'admin/add-admin.php');
+        exit();
+    }
+    
+    // Check nếu email / số điện thoại / tên đăng nhập đã tồn tại
+    // Yêu cầu bảng tbl_admin có cột `phone`
+    $check_sql = "SELECT * FROM tbl_admin WHERE email = ? OR phone = ? OR username = ?";
+    $stmt = mysqli_prepare($conn, $check_sql);
+    mysqli_stmt_bind_param($stmt, "sss", $email, $phone, $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    if(mysqli_num_rows($result) > 0){
+        mysqli_stmt_close($stmt);
+        $_SESSION['add'] = "<div class='error'>Email, số điện thoại hoặc tên đăng nhập đã tồn tại!</div>";
+        header('location:'.SITEURL.'admin/add-admin.php');
+        exit();
+    }
+    mysqli_stmt_close($stmt);
+    
+    // Hash password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
+    // Insert new admin (yêu cầu bảng tbl_admin có cột phone)
+    $sql = "INSERT INTO tbl_admin (full_name, email, username, password, phone)
+            VALUES (?, ?, ?, ?, ?)";
+    
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "sssss", $fullname, $email, $username, $hashed_password, $phone);
+    $res = mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    // Check insert or not 
+    if($res==TRUE){
+        $_SESSION['add'] = "<div class='success'>Thêm quản trị viên thành công!</div>";
+        header('location:'.SITEURL.'admin/manage-admin.php');
+        exit();
+    }
+    else{
+        $_SESSION['add'] = "<div class='error'>Thêm quản trị viên thất bại!</div>";
+        header('location:'.SITEURL.'admin/add-admin.php');
+        exit();
+    }
+}
+
+include('partials/menu.php');
+?>
 
 <div class = "main-content">
     <div class = "wrapper">
@@ -46,78 +116,3 @@
 </div>
 
 <?php include('partials/footer.php'); ?>
-
-<?php 
-    // Process the value from form and save it in database
-    
-    // Check whether the submit is clicked or not 
-    
-    if(isset($_POST['submit'])){
-        $fullname = mysqli_real_escape_string($conn, $_POST['full_name']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $password = $_POST['password'];
-        $confirm_password = $_POST['confirm_password'];
-        $phone = isset($_POST['phone']) ? mysqli_real_escape_string($conn, $_POST['phone']) : '';
-        $address = isset($_POST['address']) ? mysqli_real_escape_string($conn, $_POST['address']) : '';
-        
-        // Validate password match
-        if($password !== $confirm_password){
-            $_SESSION['add'] = "<div class='error'>Mật khẩu không khớp!</div>";
-            header('location:'.SITEURL.'admin/add-admin.php');
-            exit();
-        }
-        
-        // Validate password length
-        if(strlen($password) < 6){
-            $_SESSION['add'] = "<div class='error'>Mật khẩu phải có ít nhất 6 ký tự!</div>";
-            header('location:'.SITEURL.'admin/add-admin.php');
-            exit();
-        }
-        
-        // Check if email or username already exists
-        $check_sql = "SELECT * FROM tbl_admin WHERE email=? OR username=?";
-        $stmt = mysqli_prepare($conn, $check_sql);
-        mysqli_stmt_bind_param($stmt, "ss", $email, $username);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        
-        if(mysqli_num_rows($result) > 0){
-            mysqli_stmt_close($stmt);
-            $_SESSION['add'] = "<div class='error'>Email hoặc tên đăng nhập đã tồn tại!</div>";
-            header('location:'.SITEURL.'admin/add-admin.php');
-            exit();
-        }
-        mysqli_stmt_close($stmt);
-        
-        // Hash password
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        
-        // Insert new admin
-        $sql = "INSERT INTO tbl_admin SET
-            full_name=?,
-            email=?,
-            username=?,
-            password=?
-        ";
-        
-        $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "ssss", $fullname, $email, $username, $hashed_password);
-        $res = mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-    
-        // Check insert or not 
-        if($res==TRUE){
-            //Create a session variable to display message
-            $_SESSION['add'] = "<div class='success'>Thêm quản trị viên thành công!</div>";
-            //Redirect page to manage admin
-            header('location:'.SITEURL.'admin/manage-admin.php');
-        }
-        else{
-            //Create a session variable to display message
-            $_SESSION['add'] = "<div class='error'>Thêm quản trị viên thất bại!</div>";
-            //Redirect page to add admin
-            header('location:'.SITEURL.'admin/add-admin.php');
-        }
-    }
-?>
