@@ -188,7 +188,7 @@ include('../partials-front/menu.php');
 <body>
     <div class="cart-container">
         <div class="cart-header">
-            <h1>🛒 Giỏ hàng</h1>
+            <h1> Giỏ hàng</h1>
             <span class="cart-badge" id="cartCount">0 món</span>
         </div>
 

@@ -67,7 +67,8 @@ if(isset($_POST['submit'])) {
     
     $order_code = generateOrderCode($conn);
     $order_date = date("Y-m-d H:i:s");
-    $status = $payment_method == 'online' ? 'pending' : 'ordered';
+    $status = $payment_method == 'online' ? 'pending' : 'Ordered';
+    $payment_status = $payment_method == 'online' ? 'pending' : 'paid';
     
     // Tạo đơn hàng cho từng món trong giỏ hàng
     $success_count = 0;
@@ -92,18 +93,73 @@ if(isset($_POST['submit'])) {
             customer_email = ?,
             customer_address = ?,
             note = ?,
-            payment_method = ?";
+            payment_method = ?,
+            payment_status = ?";
         
         $stmt2 = mysqli_prepare($conn, $insert_sql);
-        mysqli_stmt_bind_param($stmt2, "sisdiisssssss", 
-            $order_code, $user_id, $food, $price, $qty, $total,
-            $order_date, $status, $customer_name, $customer_contact,
-            $customer_email, $customer_address, $note, $payment_method);
+        
+        if($stmt2 === false) {
+            // Kiểm tra xem có phải do thiếu cột payment_method/payment_status không
+            $error = mysqli_error($conn);
+            error_log("SQL Prepare Error in checkout.php: " . $error);
+            
+            // Thử insert không có payment_method và payment_status (fallback cho database cũ)
+            $insert_sql_fallback = "INSERT INTO tbl_order SET
+                order_code = ?,
+                user_id = ?,
+                food = ?,
+                price = ?,
+                qty = ?,
+                total = ?,
+                order_date = ?,
+                status = ?,
+                customer_name = ?,
+                customer_contact = ?,
+                customer_email = ?,
+                customer_address = ?,
+                note = ?";
+            
+            $stmt2 = mysqli_prepare($conn, $insert_sql_fallback);
+            if($stmt2 === false) {
+                $_SESSION['checkout-error'] = "Lỗi database: " . mysqli_error($conn) . ". Vui lòng chạy file sql/payment_system.sql để cập nhật database.";
+                error_log("SQL Fallback Error: " . mysqli_error($conn));
+                break;
+            }
+            // Type string: s(order_code), i(user_id), s(food), d(price), i(qty), d(total), s(order_date), s(status), s(customer_name), s(customer_contact), s(customer_email), s(customer_address), s(note)
+            mysqli_stmt_bind_param($stmt2, "sisdidsssssss", 
+                $order_code, $user_id, $food, $price, $qty, $total,
+                $order_date, $status, $customer_name, $customer_contact,
+                $customer_email, $customer_address, $note);
+        } else {
+            // Type string: s(order_code), i(user_id), s(food), d(price), i(qty), d(total), s(order_date), s(status), s(customer_name), s(customer_contact), s(customer_email), s(customer_address), s(note), s(payment_method), s(payment_status)
+            mysqli_stmt_bind_param($stmt2, "sisdidsssssssss", 
+                $order_code, $user_id, $food, $price, $qty, $total,
+                $order_date, $status, $customer_name, $customer_contact,
+                $customer_email, $customer_address, $note, $payment_method, $payment_status);
+        }
         
         if(mysqli_stmt_execute($stmt2)) {
             $success_count++;
+            $order_id = mysqli_insert_id($conn);
+            
+            // Nếu dùng fallback (không có payment columns), cập nhật sau
+            if($order_id && strpos($insert_sql, 'payment_method') === false) {
+                // Thử cập nhật payment_method và payment_status nếu cột tồn tại
+                $update_sql = "UPDATE tbl_order SET payment_method = ?, payment_status = ? WHERE id = ?";
+                $update_stmt = mysqli_prepare($conn, $update_sql);
+                if($update_stmt) {
+                    mysqli_stmt_bind_param($update_stmt, "ssi", $payment_method, $payment_status, $order_id);
+                    mysqli_stmt_execute($update_stmt);
+                    mysqli_stmt_close($update_stmt);
+                }
+            }
+        } else {
+            error_log("Execute Error in checkout.php: " . mysqli_stmt_error($stmt2));
         }
-        mysqli_stmt_close($stmt2);
+        
+        if($stmt2) {
+            mysqli_stmt_close($stmt2);
+        }
     }
     mysqli_stmt_close($stmt);
     

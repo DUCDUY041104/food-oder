@@ -9,11 +9,11 @@
     <title>WowFood - Food Delivery</title>
 
     <!-- Link our CSS file -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<?php echo SITEURL; ?>css/style.css">
 </head>
 <style>
     .food-search{
-    background-image: url(./image/bg.jpg);
+    background-image: url(<?php echo SITEURL; ?>image/bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -34,13 +34,13 @@
             <div class="menu text-right">
                 <ul>
                     <li>
-                        <a href="<?php echo SITEURL ;?>">🏠 Trang chủ</a>
+                        <a href="<?php echo SITEURL ;?>">Trang chủ</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL ;?>categories.php">📂 Danh mục</a>
+                        <a href="<?php echo SITEURL ;?>categories.php">Danh mục</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL ;?>food.php">🍽️ Món ăn</a>
+                        <a href="<?php echo SITEURL ;?>food.php">Món ăn</a>
                     </li>
                     <?php
                     if(isset($_SESSION['user'])){
@@ -49,50 +49,35 @@
                         <?php if(isset($_SESSION['user_id'])): ?>
                         <li>
                             <a href="<?php echo SITEURL; ?>user/cart.php" style="position: relative;">
-                                🛒 Giỏ hàng
+                                 Giỏ hàng
                                 <span id="cartBadge" class="chat-badge" style="display: none;">0</span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SITEURL; ?>user/order-history.php">📦 Đơn hàng</a>
+                            <a href="<?php echo SITEURL; ?>user/order-history.php">Đơn hàng</a>
                         </li>
                         <li>
                             <a href="<?php echo SITEURL; ?>user/chat.php" id="chatLink" style="position: relative;">
-                                💬 Chat
+                                 Chat
                                 <span id="chatBadge" class="chat-badge" style="display: none;">0</span>
                             </a>
                         </li>
                         <?php endif; ?>
                         <li>
-                            <a href="#" onclick="confirmLogout('<?php echo SITEURL; ?>user/logout.php'); return false;">🚪 Đăng xuất (<?php echo htmlspecialchars($display_name); ?>)</a>
+                            <a href="#" onclick="confirmLogout('<?php echo SITEURL; ?>user/logout.php'); return false;">Đăng xuất (<?php echo htmlspecialchars($display_name); ?>)</a>
                         </li>
                         <?php
                     }
                     else{
                         ?>
                         <li>
-                            <a href="<?php echo SITEURL ;?>user/login.php">🔐 Đăng nhập</a>
+                            <a href="<?php echo SITEURL ;?>user/login.php">Đăng nhập</a>
                         </li>
-                        <li>
-                            <a href="<?php echo SITEURL ;?>user/register.php">📝 Đăng ký</a>
-                        </li>
-                        <?php
-                    }
-                    ?>
-                    <?php
-                    // Chỉ hiển thị link Admin nếu:
-                    // 1. Chưa đăng nhập, hoặc
-                    // 2. Đã đăng nhập bằng tài khoản admin (có admin_id)
-                    // Không hiển thị nếu đã đăng nhập bằng tài khoản user thường (có user_id nhưng không có admin_id)
-                    if(!isset($_SESSION['user']) || isset($_SESSION['admin_id'])){
-                        ?>
-                        <li>
-                            <a href="<?php echo SITEURL ;?>admin/login.php">⚙️ Admin</a>
-                        </li>
-                        <?php
-                    }
-                    ?>
-                </ul>
+                    
+                     <?php
+                     }
+                     ?>
+                 </ul>
             </div>
 
             <div class="clearfix"></div>

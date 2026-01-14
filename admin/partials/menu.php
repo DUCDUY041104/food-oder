@@ -21,9 +21,11 @@ require_once('login-check.php');
                 <li><a href="manage-category.php">Danh mục</a></li>
                 <li><a href="manage-food.php">Món ăn</a></li>
                 <li><a href = "manage-order.php">Đơn hàng</a></li>
+                <li><a href = "manage-payment.php">Thanh toán</a></li>
+                <li><a href = "refund.php">Hoàn tiền</a></li>
                 <li>
                     <a href="manage-chat.php" id="chatLinkAdmin" style="position: relative;">
-                        💬 Chat
+                         Chat
                         <span id="chatBadgeAdmin" class="chat-badge" style="display: none;">0</span>
                     </a>
                 </li>

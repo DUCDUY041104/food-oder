@@ -10,8 +10,13 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Lấy lịch sử đặt hàng của user
-$sql = "SELECT * FROM tbl_order WHERE user_id = $user_id ORDER BY order_date DESC";
+// Lấy lịch sử đặt hàng của user với thông tin thanh toán
+$sql = "SELECT o.*, p.payment_status, p.transaction_id, p.payment_method 
+        FROM tbl_order o 
+        LEFT JOIN tbl_payment p ON o.order_code = p.order_code AND p.payment_status = 'success'
+        WHERE o.user_id = $user_id 
+        GROUP BY o.order_code, o.id
+        ORDER BY o.order_date DESC";
 $res = mysqli_query($conn, $sql);
 
 include('../partials-front/menu.php');
@@ -178,6 +183,25 @@ include('../partials-front/menu.php');
         .copy-code-btn:hover {
             background: #dfe4ea;
         }
+        .payment-paid {
+            color: #2ed573;
+            font-weight: bold;
+        }
+        .payment-pending {
+            color: #ffa502;
+            font-weight: bold;
+        }
+        .payment-failed {
+            color: #ff4757;
+            font-weight: bold;
+        }
+        .payment-refunded {
+            color: #a55eea;
+            font-weight: bold;
+        }
+        .payment-unpaid {
+            color: #747d8c;
+        }
     </style>
 </head>
 <body>
@@ -186,19 +210,54 @@ include('../partials-front/menu.php');
             <h1>📦 Lịch sử đặt hàng</h1>
             <p>Xem và quản lý các đơn hàng của bạn</p>
         </div>
+        
+        <?php
+        if(isset($_SESSION['refund-success'])) {
+            echo '<div class="success text-center" style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #c3e6cb;">✅ '.$_SESSION['refund-success'].'</div>';
+            unset($_SESSION['refund-success']);
+        }
+        if(isset($_SESSION['refund-error'])) {
+            echo '<div class="error text-center" style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #f5c6cb;">❌ '.$_SESSION['refund-error'].'</div>';
+            unset($_SESSION['refund-error']);
+        }
+        ?>
 
         <?php
         if (mysqli_num_rows($res) > 0) {
+            // Group orders by order_code
+            $orders_by_code = [];
             while ($row = mysqli_fetch_assoc($res)) {
                 $order_code = $row['order_code'] ?? 'N/A';
-                $order_date = $row['order_date'];
-                $status = $row['status'];
-                $food = $row['food'];
-                $qty = $row['qty'];
-                $price = $row['price'];
-                $total = $row['total'];
-                $customer_name = $row['customer_name'];
-                $customer_address = $row['customer_address'];
+                if(!isset($orders_by_code[$order_code])) {
+                    $orders_by_code[$order_code] = [
+                        'order_code' => $order_code,
+                        'order_date' => $row['order_date'],
+                        'status' => $row['status'],
+                        'customer_name' => $row['customer_name'],
+                        'customer_address' => $row['customer_address'],
+                        'payment_status' => $row['payment_status'] ?? null,
+                        'payment_method' => $row['payment_method'] ?? null,
+                        'transaction_id' => $row['transaction_id'] ?? null,
+                        'items' => [],
+                        'total' => 0
+                    ];
+                }
+                $orders_by_code[$order_code]['items'][] = [
+                    'food' => $row['food'],
+                    'qty' => $row['qty'],
+                    'price' => $row['price'],
+                    'total' => $row['total']
+                ];
+                $orders_by_code[$order_code]['total'] += floatval($row['total']);
+            }
+            
+            foreach($orders_by_code as $order_code => $order_data) {
+                $order_code = $order_data['order_code'];
+                $order_date = $order_data['order_date'];
+                $status = $order_data['status'];
+                $customer_name = $order_data['customer_name'];
+                $customer_address = $order_data['customer_address'];
+                $order_total = $order_data['total'];
                 
                 // Xác định class cho status
                 $status_class = 'status-ordered';
@@ -242,22 +301,117 @@ include('../partials-front/menu.php');
                     </div>
                     
                     <div class="order-details">
-                        <div class="order-detail-item">
-                            <span class="order-detail-label">Món ăn</span>
-                            <span class="order-detail-value"><?php echo htmlspecialchars($food); ?></span>
+                        <?php foreach($order_data['items'] as $item): ?>
+                        <div class="order-detail-item" style="grid-column: span 2;">
+                            <span class="order-detail-label"><?php echo htmlspecialchars($item['food']); ?> x<?php echo $item['qty']; ?></span>
+                            <span class="order-detail-value"><?php echo number_format($item['total'], 0, ',', '.'); ?> đ</span>
                         </div>
-                        <div class="order-detail-item">
-                            <span class="order-detail-label">Số lượng</span>
-                            <span class="order-detail-value"><?php echo $qty; ?></span>
+                        <?php endforeach; ?>
+                        <div class="order-detail-item" style="grid-column: span 2; margin-top: 10px; padding-top: 10px; border-top: 2px solid #eee;">
+                            <span class="order-detail-label"><strong>Tổng tiền đơn hàng</strong></span>
+                            <span class="order-detail-value" style="color: #ff6b81; font-size: 1.2em;"><?php echo number_format($order_total, 0, ',', '.'); ?> đ</span>
                         </div>
+                    </div>
+                    
+                    <!-- Thông tin thanh toán -->
+                    <?php
+                    $payment_status = $order_data['payment_status'] ?? 'pending';
+                    $payment_method = $order_data['payment_method'] ?? '';
+                    $transaction_id = $order_data['transaction_id'] ?? '';
+                    
+                    if($payment_status == 'paid' || $payment_status == 'success') {
+                        $payment_status_text = 'Đã thanh toán';
+                        $payment_status_class = 'payment-paid';
+                    } elseif($payment_status == 'pending') {
+                        $payment_status_text = 'Chờ thanh toán';
+                        $payment_status_class = 'payment-pending';
+                    } elseif($payment_status == 'failed') {
+                        $payment_status_text = 'Thanh toán thất bại';
+                        $payment_status_class = 'payment-failed';
+                    } elseif($payment_status == 'refunded') {
+                        $payment_status_text = 'Đã hoàn tiền';
+                        $payment_status_class = 'payment-refunded';
+                    } else {
+                        $payment_status_text = 'Chưa thanh toán';
+                        $payment_status_class = 'payment-unpaid';
+                    }
+                    ?>
+                    <div class="order-details" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
                         <div class="order-detail-item">
-                            <span class="order-detail-label">Đơn giá</span>
-                            <span class="order-detail-value">$<?php echo number_format($price, 2); ?></span>
+                            <span class="order-detail-label">Trạng thái thanh toán</span>
+                            <span class="order-detail-value <?php echo $payment_status_class; ?>">
+                                <?php echo $payment_status_text; ?>
+                            </span>
                         </div>
+                        <?php if($payment_method): ?>
                         <div class="order-detail-item">
-                            <span class="order-detail-label">Tổng tiền</span>
-                            <span class="order-detail-value" style="color: #ff6b81;">$<?php echo number_format($total, 2); ?></span>
+                            <span class="order-detail-label">Phương thức</span>
+                            <span class="order-detail-value">
+                                <?php 
+                                $method_names = [
+                                    'vnpay' => 'VNPay',
+                                    'momo' => 'MoMo',
+                                    'bank' => 'Chuyển khoản',
+                                    'cash' => 'Tiền mặt'
+                                ];
+                                echo $method_names[$payment_method] ?? strtoupper($payment_method);
+                                ?>
+                            </span>
                         </div>
+                        <?php endif; ?>
+                        <?php if($transaction_id): ?>
+                        <div class="order-detail-item">
+                            <span class="order-detail-label">Mã giao dịch</span>
+                            <span class="order-detail-value" style="font-size: 0.9em;"><?php echo htmlspecialchars($transaction_id); ?></span>
+                        </div>
+                        <?php endif; ?>
+                        <?php if($payment_status == 'pending' && $status == 'pending'): ?>
+                        <div class="order-detail-item" style="grid-column: span 3;">
+                            <a href="<?php echo SITEURL; ?>user/payment.php?order_code=<?php echo urlencode($order_code); ?>" 
+                               class="btn-chat" style="display: inline-block; margin-top: 10px;">
+                                💳 Thanh toán ngay
+                            </a>
+                        </div>
+                        <?php endif; ?>
+                        
+                        <?php 
+                        // Kiểm tra đã có yêu cầu hoàn tiền chưa
+                        $has_refund_request = false;
+                        $refund_status_text = '';
+                        $check_refund_sql = "SELECT refund_status FROM tbl_refund WHERE order_code = ? AND refund_status IN ('pending', 'processing', 'completed') LIMIT 1";
+                        $check_refund_stmt = mysqli_prepare($conn, $check_refund_sql);
+                        if($check_refund_stmt) {
+                            mysqli_stmt_bind_param($check_refund_stmt, "s", $order_code);
+                            mysqli_stmt_execute($check_refund_stmt);
+                            $refund_result = mysqli_stmt_get_result($check_refund_stmt);
+                            if($refund_row = mysqli_fetch_assoc($refund_result)) {
+                                $has_refund_request = true;
+                                $refund_status = $refund_row['refund_status'];
+                                if($refund_status == 'pending') {
+                                    $refund_status_text = 'Đã gửi yêu cầu hoàn tiền (Chờ xử lý)';
+                                } elseif($refund_status == 'processing') {
+                                    $refund_status_text = 'Yêu cầu hoàn tiền đang được xử lý';
+                                } elseif($refund_status == 'completed') {
+                                    $refund_status_text = 'Đã hoàn tiền';
+                                }
+                            }
+                            mysqli_stmt_close($check_refund_stmt);
+                        }
+                        
+                        if(($payment_status == 'paid' || $payment_status == 'success') && $status != 'Cancelled'): 
+                            if($has_refund_request): ?>
+                        <div class="order-detail-item" style="grid-column: span 3;">
+                            <span style="color: #ff9800; font-weight: bold;"><?php echo $refund_status_text; ?></span>
+                        </div>
+                            <?php else: ?>
+                        <div class="order-detail-item" style="grid-column: span 3;">
+                            <a href="<?php echo SITEURL; ?>user/request-refund.php?order_code=<?php echo urlencode($order_code); ?>" 
+                               class="btn-chat" style="display: inline-block; margin-top: 10px; background: #ff9800;">
+                                💰 Yêu cầu hoàn tiền
+                            </a>
+                        </div>
+                            <?php endif; 
+                        endif; ?>
                     </div>
                     
                     <div class="order-details">
