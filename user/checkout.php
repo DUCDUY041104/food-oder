@@ -67,8 +67,14 @@ if(isset($_POST['submit'])) {
     
     $order_code = generateOrderCode($conn);
     $order_date = date("Y-m-d H:i:s");
-    $status = $payment_method == 'online' ? 'pending' : 'Ordered';
-    $payment_status = $payment_method == 'online' ? 'pending' : 'paid';
+    // Xác định status và payment_status dựa trên payment method
+    if($payment_method == 'online' || $payment_method == 'momo') {
+        $status = 'pending';
+        $payment_status = 'pending';
+    } else {
+        $status = 'Ordered';
+        $payment_status = 'paid';
+    }
     
     // Tạo đơn hàng cho từng món trong giỏ hàng
     $success_count = 0;
@@ -175,6 +181,11 @@ if(isset($_POST['submit'])) {
             // Redirect đến trang thanh toán online
             $_SESSION['order_code'] = $order_code;
             header('location:'.SITEURL.'user/payment.php?order_code='.$order_code);
+            exit();
+        } elseif($payment_method == 'momo') {
+            // Redirect đến trang thanh toán MoMo
+            $_SESSION['order_code'] = $order_code;
+            header('location:'.SITEURL.'user/payment-momo.php?order_code='.$order_code);
             exit();
         } else {
             $_SESSION['order-success'] = "Đặt hàng thành công! Mã đơn hàng: " . $order_code;
@@ -364,6 +375,11 @@ include('../partials-front/menu.php');
                             <input type="radio" name="payment_method" value="online">
                             <div class="payment-icon">💳</div>
                             <div>Online</div>
+                        </label>
+                        <label class="payment-option" onclick="selectPayment('momo')">
+                            <input type="radio" name="payment_method" value="momo">
+                            <div class="payment-icon">💜</div>
+                            <div>MoMo</div>
                         </label>
                     </div>
 

@@ -1,12 +1,26 @@
 <?php 
 require '../config/constants.php';
+require_once('../config/auth.php');
 
-// Xử lý đăng nhập trước khi output HTML
+// Nếu đã đăng nhập admin, redirect
+if(isAdminLoggedIn()) {
+    header('location:'.SITEURL.'admin/index.php');
+    exit();
+}
+
+// Nếu đang đăng nhập bằng user, yêu cầu đăng xuất
+if(isUserLoggedIn()) {
+    $_SESSION['access-denied'] = "Bạn đang đăng nhập bằng tài khoản User. Vui lòng đăng xuất và đăng nhập bằng tài khoản Admin tại đây.";
+    header('location:'.SITEURL.'user/logout.php');
+    exit();
+}
+
+// Xử lý đăng nhập trước khi output HTML - CHỈ CHO ADMIN
 if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Use prepared statement to prevent SQL injection
+    // CHỈ kiểm tra trong bảng admin (KHÔNG kiểm tra user)
     $sql = "SELECT * FROM tbl_admin WHERE email=?";
     $stmt = mysqli_prepare($conn, $sql);
 
@@ -26,11 +40,9 @@ if(isset($_POST['submit'])){
             
             // Check if password is hashed or plain text (for backward compatibility)
             if(password_verify($password, $admin['password']) || $admin['password'] === $password){
-                // Login successful
-                $_SESSION['login'] = '';
-                $_SESSION['user'] = $admin['username'];
-                $_SESSION['admin_id'] = $admin['id'];
-                $_SESSION['login-success'] = "Đăng nhập thành công!";
+                // Login successful - sử dụng helper function
+                setAdminSession($admin);
+                $_SESSION['login-success'] = "Đăng nhập Admin thành công!";
                 header('location:'.SITEURL.'admin/index.php');
                 exit();
             }

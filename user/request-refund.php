@@ -147,167 +147,282 @@ include('../partials-front/menu.php');
     <title>Yêu cầu hoàn tiền - WowFood</title>
     <link rel="stylesheet" href="<?php echo SITEURL; ?>css/style.css">
     <style>
-        .refund-container {
-            max-width: 700px;
+        .refund-page {
+            max-width: 900px;
             margin: 100px auto 50px;
-            padding: 30px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
         }
         .refund-header {
-            text-align: center;
             margin-bottom: 30px;
-            padding-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 2px solid #ff6b81;
         }
         .refund-header h1 {
             color: #2f3542;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+        }
+        .refund-subtitle {
+            color: #747d8c;
+            font-size: 0.95rem;
+        }
+        .refund-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 25px;
+        }
+        .refund-section {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .refund-section h2 {
+            font-size: 1.2rem;
+            margin-bottom: 18px;
+            color: #2f3542;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .refund-section h2 span.emoji {
+            font-size: 1.3rem;
         }
         .order-info-box {
-            background: #f8f9fa;
-            padding: 20px;
+            background: #f8f9fb;
             border-radius: 8px;
-            margin-bottom: 30px;
+            padding: 16px 18px;
         }
         .info-row {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e3e6ea;
+            font-size: 0.95rem;
         }
         .info-row:last-child {
             border-bottom: none;
-            font-size: 1.2em;
-            font-weight: bold;
+            margin-top: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
             color: #ff6b81;
         }
+        .info-label {
+            color: #57606f;
+        }
+        .info-value {
+            font-weight: 500;
+            color: #2f3542;
+        }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #2f3542;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
-        .form-group input,
-        .form-group textarea {
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: #8395a7;
+            font-size: 0.85rem;
+        }
+        .form-control,
+        .form-textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
+            padding: 10px 12px;
+            border: 1px solid #dde1e7;
+            border-radius: 7px;
+            font-size: 0.95rem;
             box-sizing: border-box;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .form-group textarea {
+        .form-textarea {
             min-height: 120px;
             resize: vertical;
         }
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: #ff6b81;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .submit-btn:hover {
-            background: #ff4757;
+        .form-control:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #ff6b81;
+            box-shadow: 0 0 0 3px rgba(255,107,129,0.15);
         }
         .note-box {
-            background: #e3f2fd;
-            padding: 15px;
+            background: #fff7f9;
             border-radius: 8px;
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #666;
+            padding: 14px 16px;
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 10px;
+            border-left: 3px solid #ff6b81;
+        }
+        .note-box ul {
+            margin: 8px 0 0;
+            padding-left: 18px;
+        }
+        .note-box li {
+            margin-bottom: 4px;
+        }
+        .helper-text {
+            font-size: 0.85rem;
+            color: #95a5a6;
+            margin-top: 6px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 13px 0;
+            background: linear-gradient(135deg, #ff6b81, #ff8fa6);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 18px;
+            box-shadow: 0 8px 18px rgba(255,107,129,0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(255,107,129,0.45);
+            background: linear-gradient(135deg, #ff526b, #ff7b92);
+        }
+        .submit-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 10px rgba(255,107,129,0.3);
+        }
+        .error-message,
+        .success-message {
+            margin-bottom: 18px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 8px;
+            align-items: center;
         }
         .error-message {
             background: #ffebee;
             color: #c62828;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
             border-left: 4px solid #c62828;
         }
         .success-message {
             background: #e8f5e9;
             color: #2e7d32;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
             border-left: 4px solid #2e7d32;
+        }
+        .refund-meta {
+            margin-top: 12px;
+            font-size: 0.86rem;
+            color: #96a0b5;
+        }
+        @media (max-width: 768px) {
+            .refund-page {
+                margin-top: 80px;
+            }
+            .refund-content {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="refund-container">
+    <div class="refund-page">
         <div class="refund-header">
             <h1>💰 Yêu cầu hoàn tiền</h1>
-            <p>Mã đơn hàng: <strong><?php echo htmlspecialchars($order_code); ?></strong></p>
+            <p class="refund-subtitle">
+                Chúng tôi luôn mong muốn mang lại trải nghiệm tốt nhất. Nếu đơn hàng có vấn đề, hãy gửi yêu cầu hoàn tiền và đội ngũ WowFood sẽ hỗ trợ bạn sớm nhất có thể.
+            </p>
+            <div class="refund-meta">
+                Mã đơn hàng: <strong><?php echo htmlspecialchars($order_code); ?></strong>
+            </div>
         </div>
 
         <?php if(isset($_SESSION['refund-error'])): ?>
             <div class="error-message">
-                <strong>❌ Lỗi:</strong> <?php echo htmlspecialchars($_SESSION['refund-error']); ?>
+                <span>❌</span>
+                <span><?php echo htmlspecialchars($_SESSION['refund-error']); ?></span>
                 <?php unset($_SESSION['refund-error']); ?>
             </div>
         <?php endif; ?>
 
-        <div class="order-info-box">
-            <div class="info-row">
-                <span>Món ăn:</span>
-                <span><?php echo htmlspecialchars($order['food']); ?></span>
+        <div class="refund-content">
+            <!-- Thông tin đơn hàng -->
+            <div class="refund-section">
+                <h2><span class="emoji">🧾</span><span>Thông tin đơn hàng</span></h2>
+                <div class="order-info-box">
+                    <div class="info-row">
+                        <span class="info-label">Món ăn</span>
+                        <span class="info-value"><?php echo htmlspecialchars($order['food']); ?></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Số lượng</span>
+                        <span class="info-value"><?php echo $order['qty']; ?></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Ngày đặt</span>
+                        <span class="info-value"><?php echo date('d/m/Y H:i', strtotime($order['order_date'])); ?></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Tổng tiền</span>
+                        <span class="info-value"><?php echo number_format($order_total, 0, ',', '.'); ?> đ</span>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <strong>Gợi ý nhỏ:</strong>
+                    <ul>
+                        <li>Hãy mô tả chi tiết vấn đề để chúng tôi hỗ trợ nhanh hơn.</li>
+                        <li>Nếu có ảnh chụp món ăn lỗi, hãy chuẩn bị để gửi qua chat khi được yêu cầu.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="info-row">
-                <span>Số lượng:</span>
-                <span><?php echo $order['qty']; ?></span>
-            </div>
-            <div class="info-row">
-                <span>Ngày đặt:</span>
-                <span><?php echo date('d/m/Y H:i', strtotime($order['order_date'])); ?></span>
-            </div>
-            <div class="info-row">
-                <span>Tổng tiền đơn hàng:</span>
-                <span><?php echo number_format($order_total, 0, ',', '.'); ?> đ</span>
+
+            <!-- Form hoàn tiền -->
+            <div class="refund-section">
+                <h2><span class="emoji">✉️</span><span>Thông tin yêu cầu hoàn tiền</span></h2>
+
+                <form method="POST" action="">
+                    <div class="form-group">
+                        <label>Số tiền muốn hoàn *</label>
+                        <input
+                            type="number"
+                            name="refund_amount"
+                            class="form-control"
+                            value="<?php echo $order_total; ?>"
+                            min="0"
+                            max="<?php echo $order_total; ?>"
+                            step="0.01"
+                            required
+                        >
+                        <small>Tối đa: <?php echo number_format($order_total, 0, ',', '.'); ?> đ (bạn có thể yêu cầu hoàn một phần hoặc toàn bộ)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lý do yêu cầu hoàn tiền *</label>
+                        <textarea
+                            name="refund_reason"
+                            class="form-textarea"
+                            required
+                            maxlength="500"
+                            placeholder="Ví dụ: Món ăn bị nguội, giao thiếu món, đơn hàng bị hủy, không nhận được hàng..."
+                        ><?php echo htmlspecialchars($_POST['refund_reason'] ?? ''); ?></textarea>
+                        <small>Tối đa 500 ký tự – bạn mô tả càng rõ, chúng tôi hỗ trợ càng nhanh.</small>
+                    </div>
+
+                    <p class="helper-text">
+                        Bằng việc gửi yêu cầu, bạn đồng ý để WowFood kiểm tra lại đơn hàng và liên hệ với bạn nếu cần thêm thông tin.
+                    </p>
+
+                    <button type="submit" name="submit_refund_request" class="submit-btn">
+                        Gửi yêu cầu hoàn tiền
+                    </button>
+                </form>
             </div>
         </div>
-
-        <form method="POST" action="">
-            <div class="form-group">
-                <label>Số tiền yêu cầu hoàn *</label>
-                <input type="number" name="refund_amount" value="<?php echo $order_total; ?>" 
-                       min="0" max="<?php echo $order_total; ?>" step="0.01" required>
-                <small style="color: #666;">Tối đa: <?php echo number_format($order_total, 0, ',', '.'); ?> đ</small>
-            </div>
-
-            <div class="form-group">
-                <label>Lý do yêu cầu hoàn tiền *</label>
-                <textarea name="refund_reason" required placeholder="Vui lòng mô tả lý do bạn yêu cầu hoàn tiền (ví dụ: Đơn hàng bị hủy, sản phẩm lỗi, không nhận được hàng...)" 
-                          maxlength="500"><?php echo htmlspecialchars($_POST['refund_reason'] ?? ''); ?></textarea>
-                <small style="color: #666;">Tối đa 500 ký tự</small>
-            </div>
-
-            <div class="note-box">
-                <strong>📝 Lưu ý:</strong>
-                <ul style="margin: 10px 0; padding-left: 20px;">
-                    <li>Yêu cầu hoàn tiền sẽ được gửi đến admin để xem xét</li>
-                    <li>Thời gian xử lý: 1-3 ngày làm việc</li>
-                    <li>Bạn sẽ nhận được thông báo khi yêu cầu được xử lý</li>
-                    <li>Tiền sẽ được hoàn về phương thức thanh toán ban đầu</li>
-                </ul>
-            </div>
-
-            <button type="submit" name="submit_refund_request" class="submit-btn">
-                Gửi yêu cầu hoàn tiền
-            </button>
-        </form>
     </div>
 
     <?php include('../partials-front/footer.php'); ?>

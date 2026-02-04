@@ -1,8 +1,10 @@
 <?php 
-    require '../config/constants.php' ;
+    require '../config/constants.php';
+    require_once('../config/auth.php');
 
-    session_destroy();
+    // Chỉ đăng xuất admin (không ảnh hưởng user session nếu có)
+    logoutAdmin();
 
     header('location:login.php');
-
+    exit();
 ?>

@@ -1,84 +1,61 @@
 <?php 
 include('../config/constants.php'); 
+require_once('../config/auth.php');
 
-// Xử lý đăng nhập trước khi output HTML - Phân quyền tự động
+// Nếu đã đăng nhập, redirect
+if(isUserLoggedIn()) {
+    header('location:'.SITEURL.'index.php');
+    exit();
+}
+
+// Nếu đang đăng nhập bằng admin, yêu cầu đăng xuất
+if(isAdminLoggedIn()) {
+    $_SESSION['access-denied'] = "Bạn đang đăng nhập bằng tài khoản Admin. Vui lòng đăng xuất và đăng nhập bằng tài khoản User tại đây.";
+    header('location:'.SITEURL.'admin/logout.php');
+    exit();
+}
+
+// Xử lý đăng nhập trước khi output HTML - CHỈ CHO USER
 if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
     
     $login_success = false;
-    $is_admin = false;
     
-    // Bước 1: Kiểm tra email trong bảng admin trước
-    $admin_sql = "SELECT * FROM tbl_admin WHERE email=?";
-    $admin_stmt = mysqli_prepare($conn, $admin_sql);
+    // CHỈ kiểm tra trong bảng user (KHÔNG kiểm tra admin)
+    $user_sql = "SELECT * FROM tbl_user WHERE email=? AND status='Active'";
+    $user_stmt = mysqli_prepare($conn, $user_sql);
     
-    if($admin_stmt){
-        mysqli_stmt_bind_param($admin_stmt, "s", $email);
-        mysqli_stmt_execute($admin_stmt);
-        $admin_result = mysqli_stmt_get_result($admin_stmt);
-        $admin_count = mysqli_num_rows($admin_result);
+    if($user_stmt){
+        mysqli_stmt_bind_param($user_stmt, "s", $email);
+        mysqli_stmt_execute($user_stmt);
+        $user_result = mysqli_stmt_get_result($user_stmt);
+        $user_count = mysqli_num_rows($user_result);
         
-        if($admin_count == 1){
-            // Tìm thấy trong bảng admin
-            $admin_row = mysqli_fetch_assoc($admin_result);
+        if($user_count == 1){
+            // Tìm thấy trong bảng user
+            $user_row = mysqli_fetch_assoc($user_result);
             
-            // Kiểm tra password (hỗ trợ cả hash và plain text)
-            if(password_verify($password, $admin_row['password']) || $admin_row['password'] === $password){
-                // Đăng nhập admin thành công
-                $_SESSION['user'] = $admin_row['username'];
-                $_SESSION['admin_id'] = $admin_row['id'];
-                $_SESSION['login-success'] = "Đăng nhập Admin thành công!";
+            // Verify password
+            if(password_verify($password, $user_row['password'])){
+                // Đăng nhập user thành công - sử dụng helper function
+                setUserSession($user_row);
+                $_SESSION['login-success'] = "Đăng nhập thành công!";
                 $login_success = true;
-                $is_admin = true;
             }
         }
-        mysqli_stmt_close($admin_stmt);
-    }
-    
-    // Bước 2: Nếu không phải admin, kiểm tra trong bảng user
-    if(!$login_success){
-        $user_sql = "SELECT * FROM tbl_user WHERE email=? AND status='Active'";
-        $user_stmt = mysqli_prepare($conn, $user_sql);
-        
-        if($user_stmt){
-            mysqli_stmt_bind_param($user_stmt, "s", $email);
-            mysqli_stmt_execute($user_stmt);
-            $user_result = mysqli_stmt_get_result($user_stmt);
-            $user_count = mysqli_num_rows($user_result);
-            
-            if($user_count == 1){
-                // Tìm thấy trong bảng user
-                $user_row = mysqli_fetch_assoc($user_result);
-                
-                // Verify password
-                if(password_verify($password, $user_row['password'])){
-                    // Đăng nhập user thành công
-                    $_SESSION['user'] = $user_row['username'];
-                    $_SESSION['user_id'] = $user_row['id'];
-                    $_SESSION['user_full_name'] = $user_row['full_name'];
-                    $_SESSION['login-success'] = "Đăng nhập thành công!";
-                    $login_success = true;
-                }
-            }
-            mysqli_stmt_close($user_stmt);
-        }
+        mysqli_stmt_close($user_stmt);
     }
     
     // Xử lý redirect sau khi đăng nhập thành công
     if($login_success){
-        if($is_admin){
-            // Nếu là admin -> tự động chuyển đến dashboard admin
-            header('location:'.SITEURL.'admin/index.php');
+        // Kiểm tra redirect_food_id hoặc chuyển về home
+        if(isset($_SESSION['redirect_food_id'])) {
+            $food_id = $_SESSION['redirect_food_id'];
+            unset($_SESSION['redirect_food_id']);
+            header('location:'.SITEURL.'order.php?food_id='.$food_id);
         } else {
-            // Nếu là user -> kiểm tra redirect_food_id hoặc chuyển về home
-            if(isset($_SESSION['redirect_food_id'])) {
-                $food_id = $_SESSION['redirect_food_id'];
-                unset($_SESSION['redirect_food_id']);
-                header('location:'.SITEURL.'order.php?food_id='.$food_id);
-            } else {
-                header('location:'.SITEURL.'index.php');
-            }
+            header('location:'.SITEURL.'index.php');
         }
         exit();
     } else {

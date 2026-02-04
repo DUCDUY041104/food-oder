@@ -1,22 +1,13 @@
 <?php
-    // Kiểm tra nếu chưa đăng nhập
-    if (!isset($_SESSION['user'])) {
-        $_SESSION['no-login-message'] = "<div class='error text-center'>Vui lòng đăng nhập để truy cập Admin Panel.</div>";
-        header('location: ' . SITEURL . 'admin/login.php');
-        exit();
-    }
-    
-    // Kiểm tra nếu đăng nhập bằng tài khoản user (không phải admin)
-    if (isset($_SESSION['user_id']) && !isset($_SESSION['admin_id'])) {
-        $_SESSION['access-denied'] = "Bạn không có quyền truy cập trang Admin. Vui lòng đăng nhập bằng tài khoản Admin.";
-        header('location: ' . SITEURL . 'index.php');
-        exit();
-    }
-    
-    // Kiểm tra nếu không có admin_id (bảo vệ bổ sung)
-    if (!isset($_SESSION['admin_id'])) {
-        $_SESSION['no-login-message'] = "<div class='error text-center'>Vui lòng đăng nhập bằng tài khoản Admin để truy cập Admin Panel.</div>";
-        header('location: ' . SITEURL . 'admin/login.php');
-        exit();
-    }
+/**
+ * Admin Login Check
+ * Kiểm tra admin đã đăng nhập chưa
+ * Chỉ cho phép admin, không cho user
+ * LƯU Ý: dùng __DIR__ để include đúng đường dẫn, tránh lỗi khi gọi từ file index.php
+ */
+require_once(__DIR__ . '/../../config/constants.php');
+require_once(__DIR__ . '/../../config/auth.php');
+
+// Yêu cầu admin phải đăng nhập (chỉ admin, không phải user)
+requireAdminLogin();
 ?>

@@ -12,7 +12,7 @@ define('SITEURL', 'http://localhost/food_order/');
 // Nếu MySQL của bạn chạy trên port khác (ví dụ: 3307), 
 // hãy thay đổi giá trị $port bên dưới
 $host = "localhost";
-$port = 3307; // Port MySQL (mặc định là 3306, nếu dùng 3307 thì thay đổi)
+$port = 3306; // Port MySQL (mặc định là 3306, nếu dùng 3307 thì thay đổi)
 $username = "root";
 $password = ""; // Nhập mật khẩu MySQL nếu có
 $dbname = "food-oder";

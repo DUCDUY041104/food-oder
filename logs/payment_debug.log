@@ -219,3 +219,123 @@ POST data: Array
 )
 
 REQUEST_METHOD: POST
+
+================================================================================
+2026-01-15 09:00:20 - PAGE LOADED
+REQUEST METHOD: GET
+POST data exists: Yes
+POST confirm_payment: Not set
+GET order_code: ORD202601154722F5
+2026-01-15 09:00:22 - FORM SUBMIT TRIGGERED (from JavaScript)
+POST data: Array
+(
+    [order_code] => ORD202601154722F5
+    [payment_method] => momo
+    [confirm_payment] => 1
+)
+
+REQUEST_METHOD: POST
+
+================================================================================
+2026-01-15 09:00:22 - PAGE LOADED
+REQUEST METHOD: POST
+POST data exists: Yes
+POST confirm_payment: 1
+GET order_code: ORD202601154722F5
+
+================================================================================
+2026-01-15 09:00:22 - PAYMENT FORM SUBMITTED
+================================================================================
+POST data: Array
+(
+    [order_code] => ORD202601154722F5
+    [payment_method] => momo
+    [confirm_payment] => 1
+)
+
+GET data: Array
+(
+    [order_code] => ORD202601154722F5
+)
+
+Order code: ORD202601154722F5
+User ID: 7
+Order total: 24
+Payment method: momo
+Headers sent: No
+Output buffer level: 2
+Step 1: Payment method = momo
+Step 2: Payment table exists = Yes
+Step 3: Creating new payment record, expires_at = 2026-01-15 09:15:22
+Step 4: Created new payment record, ID = 4
+Step 5: Processing payment, success = Yes
+Step 6: Transaction ID generated = TXN17684640229818
+Step 7: Updating order status
+Step 7a: Order updated successfully
+Step 8: Session updated, preparing redirect
+Redirect URL will be: http://localhost/food_order/user/order-history.php
+Output buffer level before clean: 2
+Step 9: Output buffer cleaned, level now: 0
+Headers sent: No
+Step 10: Sending JavaScript redirect to: http://localhost/food_order/user/order-history.php
+END OF PAYMENT PROCESSING
+
+================================================================================
+2026-01-20 09:34:01 - PAGE LOADED
+REQUEST METHOD: GET
+POST data exists: Yes
+POST confirm_payment: Not set
+GET order_code: ORD202601208EA512
+2026-01-20 09:34:04 - FORM SUBMIT TRIGGERED (from JavaScript)
+POST data: Array
+(
+    [order_code] => ORD202601208EA512
+    [payment_method] => bank
+    [confirm_payment] => 1
+)
+
+REQUEST_METHOD: POST
+
+================================================================================
+2026-01-20 09:34:04 - PAGE LOADED
+REQUEST METHOD: POST
+POST data exists: Yes
+POST confirm_payment: 1
+GET order_code: ORD202601208EA512
+
+================================================================================
+2026-01-20 09:34:04 - PAYMENT FORM SUBMITTED
+================================================================================
+POST data: Array
+(
+    [order_code] => ORD202601208EA512
+    [payment_method] => bank
+    [confirm_payment] => 1
+)
+
+GET data: Array
+(
+    [order_code] => ORD202601208EA512
+)
+
+Order code: ORD202601208EA512
+User ID: 7
+Order total: 5
+Payment method: bank
+Headers sent: No
+Output buffer level: 2
+Step 1: Payment method = bank
+Step 2: Payment table exists = Yes
+Step 3: Creating new payment record, expires_at = 2026-01-20 09:49:04
+Step 4: Created new payment record, ID = 5
+Step 5: Processing payment, success = Yes
+Step 6: Transaction ID generated = TXN17688980446804
+Step 7: Updating order status
+Step 7a: Order updated successfully
+Step 8: Session updated, preparing redirect
+Redirect URL will be: http://localhost/food_order/user/order-history.php
+Output buffer level before clean: 2
+Step 9: Output buffer cleaned, level now: 0
+Headers sent: No
+Step 10: Sending JavaScript redirect to: http://localhost/food_order/user/order-history.php
+END OF PAYMENT PROCESSING
